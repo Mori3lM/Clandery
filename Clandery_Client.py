@@ -6,7 +6,6 @@ from tkcalendar import Calendar
 import calendar
 import datetime
 import json
-from PIL import Image, ImageTk
 
 logged_user, status_code = " ", " "
 
@@ -35,6 +34,7 @@ def display_system():
     logo_panel1.image = img
     logo_panel1.place(x=0, y=0)
 
+    # logout
     log_out_button = tk.Button(root1, text='Logout', height=2, width=10, command=lambda: root1.destroy())
     log_out_button.place(x=1510, y=10)
 
@@ -73,7 +73,7 @@ def display_system():
     chosen_date = current_date
     refresh(root1, chosen_date, fontstyle, cal, user_company)
 
-    # buttons for admins and also owners
+    # buttons for admins and owners
     if user_rank == "Admin" or user_rank == "Owner":
         reg_button = tk.Button(root1, text='Create New User', height=2, width=15, command=lambda: (register(user_company)))
         reg_button.place(x=1388, y=10)
@@ -83,11 +83,11 @@ def display_system():
         add_event_button.place(x=1212, y=10)
         remove_event_button = tk.Button(root1, text='Remove Event', height=2, width=12, command=lambda: (remove_event(chosen_date, root1, cal, user_company)))
         remove_event_button.place(x=1110, y=10)
-        if user_rank == "Owner":
-            company_add_button = tk.Button(root1, text='Add Company', height=2, width=12,command=lambda: (add_company()))
-            company_add_button.place(x=1005, y=10)
-            company_remove_button = tk.Button(root1, text='Remove Company', height=2, width=15,command=lambda: (remove_company()))
-            company_remove_button.place(x=880, y=10)
+    if user_rank == "Owner" or user_rank == "Admin" and user_company == "Clandery":
+        company_add_button = tk.Button(root1, text='Add Company', height=2, width=12, command=lambda: (add_company()))
+        company_add_button.place(x=1005, y=10)
+        company_remove_button = tk.Button(root1, text='Remove Company', height=2, width=15,command=lambda: (remove_company()))
+        company_remove_button.place(x=880, y=10)
     refresh_button = tk.Button(root1, text='Refresh', height=2, width=8,command=lambda: (refresh(root1, chosen_date, fontstyle, cal, user_company)))
     refresh_button.place(x=985, y=102)
     next_button = tk.Button(root1, text='Next Day', height=2, width=9, command=lambda: (next_day_events(current_date, root1, fontstyle, cal, user_company)))
