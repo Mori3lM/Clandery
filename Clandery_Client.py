@@ -9,7 +9,6 @@ import json
 
 logged_user, status_code = " ", " "
 
-
 def display_system():
     global root1, fontstyle, cal, user_company
     root1 = tk.Tk()
@@ -902,8 +901,8 @@ def login(user, password):
             login_frame_off()
             display_verification()
         elif status == "False_logged":
-            warning_msg = "Please try again!"
-            mb.showwarning(title="User already logged into our system", message=warning_msg)
+            warning_msg = "User already logged into our system"
+            mb.showwarning(title="Please try again!", message=warning_msg)
         else:
             warning_msg = "Please try again!"
             mb.showwarning(title="Incorrect username or password", message=warning_msg)
